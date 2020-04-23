@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import Champ from '../Champ/Champ.js';
+import SynergyBlock from '../SynergyBlock/SynergyBlock.js';
 import champions from './set3/champions.json';
 class ChampCarousel extends Component {
-  state = {randomizedChampions: [], rerollButtonText: 'Generate Lineup'};
-
+  state = {synergies: [], rerollButtonText: 'Generate Lineup'};
+  synergies = ['Celestial', 'Chrono', 'Cybernetic', 'Blademaster', 'Blaster',
+  'Brawler', 'Dark Star', 'Mech-Pilot', 'Rebel', 'Demolitionist', 'Infiltrator',
+  'Mana-Reaver', 'Space Pirate', 'Star Guardian', 'Valkyrie', 'Mercenary',
+  'Mystic', 'Protector', 'Void', 'Sniper', 'Sorcerer', 'Vanguard'];
   generate() {
     let champPool = [...champions];
-    let n = 9;
-    const lineUp = [];
-    while (n > 0) {
-      lineUp.push(champPool[Math.floor(Math.random()*50)%champPool.length]);
-      champPool = champPool.filter(champ => champ.name !== lineUp[lineUp.length-1].name)
-      n--;
-    }
-    this.setState({randomizedChampions: lineUp, rerollButtonText: 'Reroll'});
+    let synergies = [...this.synergies];
+    let syn1 = synergies.splice(Math.floor(Math.random()*50)%this.synergies.length,1)[0];
+    let syn2 = synergies.splice(Math.floor(Math.random()*50)%this.synergies.length,1)[0];
+    let syn1Champs = champPool.filter(champ => champ.traits.includes(syn1));
+    let syn2Champs = champPool.filter(champ => champ.traits.includes(syn2));
+
+    this.setState({synergies: [{synergy: syn1, champs: syn1Champs}, {synergy: syn2, champs: syn2Champs}], rerollButtonText: 'Reroll'});
   }
 
   render() {
@@ -23,11 +25,7 @@ class ChampCarousel extends Component {
           <button className='rerollButton' onClick={this.generate.bind(this)}>{this.state.rerollButtonText}</button>
         </div>
         <div className='champLineup'>
-          {this.state.randomizedChampions.map(champ => <Champ key={champ.name} char={champ}/>)}
-        </div>
-        <div className='starting Item'>
-          /* User selects item first picked on first carousel*/
-          /* Item that can be generated from that first item is randomly selected */
+          {this.state.synergies.map(synergy => <SynergyBlock key={synergy.synergy} synergy={synergy}/>)}
         </div>
       </div>
     );
