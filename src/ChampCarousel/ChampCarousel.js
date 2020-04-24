@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SynergyBlock from "../SynergyBlock/SynergyBlock.js";
 import champions from "./set3/champions.json";
 import synergyList from "./set3/synergies.json";
+
 class ChampCarousel extends Component {
   state = { synergies: [], rerollButtonText: "Generate Lineup" };
 

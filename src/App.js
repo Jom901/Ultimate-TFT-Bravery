@@ -1,7 +1,7 @@
-import React from 'react';
-import ChampCarousel from './ChampCarousel/ChampCarousel.js';
-import ItemSelect from './ItemSelect/ItemSelect.js';
-import './App.css';
+import React from "react";
+import ChampCarousel from "./ChampCarousel/ChampCarousel.js";
+import ItemSelect from "./ItemSelect/ItemSelect.js";
+import "./App.css";
 
 function App() {
   return (

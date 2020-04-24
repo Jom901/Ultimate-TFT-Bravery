@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 const fixName = (champ) => {
   return champ.name.replace(/'|\s/gi, "").toLowerCase();
@@ -19,5 +20,7 @@ const SynergyBlock = (props) => {
     </div>
   );
 };
-
+SynergyBlock.propTypes = {
+  synergy: propTypes.object,
+};
 export default SynergyBlock;

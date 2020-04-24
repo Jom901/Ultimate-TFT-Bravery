@@ -4,10 +4,13 @@ import items from "./set3/items.json";
 import itemTransformations from "./set3/itemTransformations.json";
 
 class ItemSelect extends Component {
+  
   state = { generatedItemTag: null };
+  
   getItemDetails(id) {
     return items.filter((item) => item.id === parseInt(id))[0].name;
   }
+
   handleStartingItemClick(id) {
     let randomItem =
       itemTransformations[id][
