@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import ChampCarousel from './ChampCarousel/ChampCarousel.js';
 import ItemSelect from './ItemSelect/ItemSelect.js';
 import './App.css';
