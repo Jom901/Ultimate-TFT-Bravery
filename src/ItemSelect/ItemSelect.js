@@ -59,7 +59,7 @@ class ItemSelect extends Component {
       <div className="itemSelect">
         <div className="startingItems">
           <h1>What item did your starting champion have?</h1>
-          <div>
+          <div className="startingItemBlock">
             {Object.keys(itemTransformations).map((baseItem) => (
               <StartingItem
                 active={this.state.selectionStatus[baseItem]}

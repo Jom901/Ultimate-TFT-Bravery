@@ -47,6 +47,11 @@
   margin-left: 10px;
 }
 
+.startingItemBlock {
+  display: flex;
+  justify-content: space-around;
+}
+
 .activeStartingItem {
   border: 5px solid yellow;
   margin-right: 10px;
