@@ -41,7 +41,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+.startingItem {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.activeStartingItem {
+  border: 5px solid yellow;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .randomizedItem {

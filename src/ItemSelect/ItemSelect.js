@@ -4,11 +4,32 @@ import items from "./set3/items.json";
 import itemTransformations from "./set3/itemTransformations.json";
 
 class ItemSelect extends Component {
-  
-  state = { generatedItemTag: null };
-  
+  state = {
+    generatedItemTag: null,
+    selectionStatus: {
+      "01": false,
+      "02": false,
+      "03": false,
+      "04": false,
+      "05": false,
+      "06": false,
+      "07": false,
+      "08": false,
+      "09": false,
+    },
+  };
+
   getItemDetails(id) {
     return items.filter((item) => item.id === parseInt(id))[0].name;
+  }
+
+  setStartingItemSelection(id) {
+    let { selectionStatus } = this.state;
+    Object.keys(selectionStatus).forEach(
+      (item) => (selectionStatus[item] = false)
+    );
+    selectionStatus[id] = true;
+    return selectionStatus;
   }
 
   handleStartingItemClick(id) {
@@ -16,18 +37,21 @@ class ItemSelect extends Component {
       itemTransformations[id][
         Math.floor(Math.random() * 50) % itemTransformations[id].length
       ];
-    let name = this.getItemDetails(randomItem);
+
     let generatedItemTag = (
       <div className="randomizedItem">
         <h1>You must build this item!</h1>
         <img
           className="randomizedItemImg"
-          alt={name}
+          alt={this.getItemDetails(randomItem)}
           src={`${process.env.PUBLIC_URL}/items/${randomItem}.png`}
         />
       </div>
     );
-    this.setState({ generatedItemTag: generatedItemTag });
+    this.setState({
+      generatedItemTag: generatedItemTag,
+      selectionStatus: this.setStartingItemSelection(id),
+    });
   }
 
   render() {
@@ -38,6 +62,7 @@ class ItemSelect extends Component {
           <div>
             {Object.keys(itemTransformations).map((baseItem) => (
               <StartingItem
+                active={this.state.selectionStatus[baseItem]}
                 itemName={this.getItemDetails(baseItem)}
                 key={baseItem}
                 handleClick={this.handleStartingItemClick.bind(this)}
